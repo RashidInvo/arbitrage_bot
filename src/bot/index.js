@@ -16,6 +16,8 @@ const cache = require("./cache");
 const { setup, getInitialOutAmountWithSlippage } = require("./setup");
 const { printToConsole } = require("./ui/");
 const { swap, failedSwapHandler, successSwapHandler } = require("./swap");
+// import fetch from 'node-fetch';
+// const fetch = require('node-fetch');
 
 const pingpongStrategy = async (jupiter, tokenA, tokenB) => {
 	cache.iteration++;
@@ -236,6 +238,7 @@ const arbitrageStrategy = async (jupiter, tokenA) => {
 			slippage,
 			forceFetch: true,
 		});
+		
 
 		checkRoutesResponse(routes);
 
@@ -251,6 +254,7 @@ const arbitrageStrategy = async (jupiter, tokenA) => {
 
 		// choose first route
 		const route = await routes.routesInfos[1];
+
 
 		// update slippage with "profit or kill" slippage
 		if (cache.config.slippage === "profitOrKill") {
